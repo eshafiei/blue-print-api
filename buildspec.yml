@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+
+  install:
+    runtime-version:
+      docker: 19
+  
+  pre_builds:
+    commands:
+      - ECR_URI=114359309507.dkr.ecr.us-east-1.amazonaws.com
+      - IMAGE_NAME="blue-print-api"
+      - echo installing ECS tools...
+      - dotnet tool install -g Amazon.ECS.Tools
+
+  build:
+    commands:
+      - echo build started on `date`
+      - cd ./blue-print-api
+      - dotnet ecs push-image $REPOSITORY_URI --tag $IMAGE_NAME
+  
+  post_build:
+    commands:
+      - echo writing image definitions file...
+      - printf '[{"name":"blue-print-api-container","imageUri":"%s"}]' $ECR_URI/$IMAGE_NAME > imagedefinitions.json
+  
+  artifacts:
+    files: ./blue-print-api/imagedefinitions.json
+    discard-paths: yes
