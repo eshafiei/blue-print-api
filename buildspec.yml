@@ -6,7 +6,7 @@ phases:
     runtime-version:
       docker: 19
   
-  pre_builds:
+  pre_build:
     commands:
       - ECR_URI=114359309507.dkr.ecr.us-east-1.amazonaws.com
       - IMAGE_NAME="blue-print-api"
