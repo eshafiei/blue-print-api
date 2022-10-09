@@ -9,7 +9,7 @@ phases:
   pre_build:
     commands:
       - ECR_URI=114359309507.dkr.ecr.us-east-1.amazonaws.com
-      - IMAGE_NAME="blue-print-api"
+      - IMAGE_NAME="blue-print-api:1"
       - echo installing ECS tools...
       - dotnet tool install -g Amazon.ECS.Tools
 
