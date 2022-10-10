@@ -22,7 +22,7 @@ phases:
   post_build:
     commands:
       - echo writing image definitions file...
-      - printf '[{"name":"blue-print-api","imageUri":"%s"}]' $ECR_URI/$IMAGE_NAME > imagedefinitions.json
+      - printf '[{"name":"blue-print-api-cntr","imageUri":"%s"}]' $ECR_URI/$IMAGE_NAME > imagedefinitions.json
   
 artifacts:
   files: ./blue-print-api/imagedefinitions.json
